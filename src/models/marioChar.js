@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const marioScheme = new mongoose.Schema({
     name: String,
     weight: Number
-})
+});
 
-const marioModel = mongoose.model('mariochar',marioScheme)
+const marioModel = mongoose.model('mariochar', marioScheme)
 module.exports = marioModel;
