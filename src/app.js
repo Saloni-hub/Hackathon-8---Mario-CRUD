@@ -38,7 +38,7 @@ app.post('/mario', async (req, res) => {
 });
 
 app.patch('/mario/:id', async (req, res) => {
-    const id = req.params.body
+    const id = req.params.id;
     const newMArio = req.body;
 
     try {
