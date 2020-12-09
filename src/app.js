@@ -33,7 +33,7 @@ app.post('/mario', async (req, res) => {
     } else {
         const newMarioModel = new marioModel(newMArio);
         await newMarioModel.save();
-        res.send(newMarioModel);
+        res.status(201).send(newMarioModel);
     }
 });
 
@@ -63,7 +63,7 @@ app.patch('/mario/:id', async (req, res) => {
 app.delete('/mario/:id', async (req, res) => {
     const id = req.params.body
     try {
-        const res = await marioModel.findById(id);
+        await marioModel.findById(id);
         await marioModel.deleteOne({ _id: id });
         res.status(200).send({ message: 'character deleted' })
     } catch (error) {
