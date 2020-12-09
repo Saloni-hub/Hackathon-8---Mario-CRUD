@@ -19,7 +19,7 @@ app.get('/mario', async (req, res) => {
 app.get('/mario/:id', async (req, res) => {
     const id = req.params.id;
     try {
-        res.send(await marioModel.findById());
+        res.send(await marioModel.findById(id));
     } catch (e) {
         res.status(400).send({ message: e.message })
     }
@@ -42,7 +42,7 @@ app.patch('/mario/:id', async (req, res) => {
     const newMArio = req.body;
 
     try {
-        const data = await marioModel.findById();
+        const data = await marioModel.findById(id);
         if (isNullOrUndefined(newMArio.name) && isNullOrUndefined(newMArio.weight)) {
             res.status(400).send({ message: 'both name and weight is missing' });
         } else {
@@ -61,7 +61,7 @@ app.patch('/mario/:id', async (req, res) => {
 });
 
 app.delete('/mario/:id', async (req, res) => {
-    const id = req.params.body
+    const id = req.params.id;
     try {
         await marioModel.findById(id);
         await marioModel.deleteOne({ _id: id });
